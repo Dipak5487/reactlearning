@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+//import './ToDo.css';
+//import Button from 'react-bootstrap/Button';
+
 const ToDo = () => {
   const [todo, setToDo] = useState([])
   const [input, setInput] = useState("")
@@ -25,21 +28,22 @@ const ToDo = () => {
     setIndex(e)
     setShow(false)
   }
-  function Update(e) {    
-    
+  function Update(e) {
+
     console.log("Update value", e.target.value)
-    todo[index] = e.target.value    
-    console.log("Input value",show)
+    todo[index] = e.target.value
+    console.log("Input value", show)
     setInput("")
     setShow(true)
 
   }
-
   return (
     <>
       <input type="text" name="listname" value={input} onChange={handleChanges}></input>
-      {show ? (<button style={{ margin: "10px" }} onClick={addItem}>Add Item</button>) :
-        (<button style={{ margin: "20px" }} onClick={Update} value={input}>Update</button>)
+      {show ? (<button className="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="false" aria-controls="collapseExample" style={{ margin: "10px" }} onClick={addItem}>Add Item</button>) :
+        (<button className="btn btn-warning" data-bs-toggle="collapse" href="#collapseExample" role="button"
+        aria-expanded="false" aria-controls="collapseExample" outline style={{ margin: "20px" }} onClick={Update} value={input}>Update</button>)
       }
       <br />
       <br />
@@ -47,9 +51,12 @@ const ToDo = () => {
         todo.map((item, index) => {
           return (
             <>
-              <span>{item}</span>
-              <button style={{ margin: "10px" }} onClick={() => filterList(index)}> Delete</button>
-              <button style={{ margin: "20px" }} onClick={() => EditList(index)}> Edit</button>
+              <span className="text-secondary mb-4" style={{ fontSize: '1.5rem' }}>{item}</span>
+              <button className="btn btn-danger" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="false" aria-controls="collapseExample" style={{ margin: "20px" }} onClick={() => filterList(index)}> Delete</button>
+
+              <button className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="false" aria-controls="collapseExample" style={{ margin: "20px" }} onClick={() => EditList(index)}> Edit</button>
               <br />
             </>
           )
