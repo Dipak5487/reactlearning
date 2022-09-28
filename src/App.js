@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-// import Gr'./Components/Greating'
+ import ToDo from './Components/ToDoComponent/ToDo';
 import Greating from './Components/Greating';
 
 function App() {
@@ -8,6 +8,9 @@ function App() {
   return (
     <>
     <Greating/>
+    <br/>
+    <br/>
+    <ToDo/>
     </>
     
   );

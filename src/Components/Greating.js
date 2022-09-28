@@ -22,12 +22,12 @@ const Greating = (props) => {
 
     }
     return (
-        <fragment>
+        <>
             <p>Hello {name}</p>
             <input type="text" name="FirstName" value={input} onChange={handleChanges} />
-            <button onClick={changeName}>Change Name</button>
-            <button onClick={revert}>Revers Name</button>
-        </fragment>
+            <button style={{ margin: "10px" }} onClick={changeName}>Change Name</button>
+            <button style={{ margin: "20px" }}onClick={revert}>Revers Name</button>
+        </>
     )
 }
 export default Greating
