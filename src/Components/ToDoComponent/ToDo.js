@@ -6,6 +6,7 @@ const ToDo = () => {
   const [chieldInput, setChieldInput] = useState("")
   const [index, setIndex] = useState(0)
   const [show, setShow] = useState(false)
+  const [isDisable, setDisable] = useState(false)
 
   function filterList(e) {
     var data = todo.filter((x, index) => index !== e)
@@ -45,6 +46,7 @@ const ToDo = () => {
     setChieldInput("")
     setInput("")
     setShow(false)
+    setDisable(false)
 
   }
   function OpneInputBox(value, indx) {
@@ -55,14 +57,16 @@ const ToDo = () => {
     setIndex(indx)
     setShow(true)
     setInput("")
+    setDisable(true)
 
 
   }
   return (
     <>
-      <input type="text" name="listname" value={input} onChange={handleChanges}></input>
-      <button className="btn btn-success" style={{ margin: "10px" }} onClick={addItem}>Add Item</button>
-      <br />
+      
+      <span><input type="text" name="listname" value={input} onChange={handleChanges}></input>
+      <button className="btn btn-success" style={{ margin: "10px" }} disabled ={isDisable === false ? false : true} onClick={addItem}>Add Item</button>
+      </span><br />
       <br />
       {
         
