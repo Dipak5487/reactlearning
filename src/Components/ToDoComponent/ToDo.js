@@ -12,6 +12,7 @@ const ToDo = () => {
     var data = todo.filter((x, index) => index !== e)
     setToDo(data)
     setShow(true)
+    setInput("")
   }
   function handleChanges(e) {
     setInput(e.target.value)
