@@ -5,7 +5,7 @@ const ToDo = () => {
   const [input, setInput] = useState("")
   const [chieldInput, setChieldInput] = useState("")
   const [index, setIndex] = useState(0)
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
 
   function filterList(e) {
     var data = todo.filter((x, index) => index !== e)
@@ -44,7 +44,7 @@ const ToDo = () => {
     console.log("Input update value", show)
     setChieldInput("")
     setInput("")
-    setShow(true)
+    setShow(false)
 
   }
   function OpneInputBox(value, indx) {
@@ -53,7 +53,7 @@ const ToDo = () => {
 
     setChieldInput(value)
     setIndex(indx)
-    setShow(false)
+    setShow(true)
     setInput("")
 
 
@@ -65,7 +65,7 @@ const ToDo = () => {
       <br />
       <br />
       {
-        show ? (
+        
           todo.map((item, index) => {
             return (
               <>
@@ -78,16 +78,12 @@ const ToDo = () => {
                 </table>
               </>
             )
-          })
-        )
-          :
-          (
-            <span>
+          })          
+      }
+      {show?(<span>
               <input type="text" name="listname" value={chieldInput} onChange={handleChieldChanges}></input>
               <button className="btn btn-warning" outline style={{ margin: "20px" }} onClick={Update} value={chieldInput}>Update</button>
-            </span>
-          )
-      }
+            </span>) : (<br/>)}
     </>
   )
 }
