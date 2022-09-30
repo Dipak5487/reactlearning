@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-//import './ToDo.css';
-
 
 const ToDo = () => {
   const [todo, setToDo] = useState([])
   const [input, setInput] = useState("")
+  const [chieldInput, setChieldInput] = useState("")
   const [index, setIndex] = useState(0)
   const [show, setShow] = useState(true)
 
@@ -13,10 +12,17 @@ const ToDo = () => {
     setToDo(data)
     setShow(true)
     setInput("")
+    setChieldInput("")
+    console.log("remove Input", input)
+    console.log("remove input", chieldInput)
   }
   function handleChanges(e) {
     setInput(e.target.value)
   }
+  function handleChieldChanges(e) {
+    setChieldInput(e.target.value)
+  }
+
   function addItem(e) {
     if (input.trim()) {
       setToDo([...todo, input])
@@ -28,50 +34,59 @@ const ToDo = () => {
     setInput(data)
     setIndex(e)
     setShow(false)
+    setInput("")
   }
-  function Update(e) {
+  function Update(e, ind) {
 
-    console.log("Update value", e.target.value)
+    console.log("Update value", e)
+    console.log("Update ind", ind)
     todo[index] = e.target.value
-    console.log("Input value", show)
+    console.log("Input update value", show)
+    setChieldInput("")
     setInput("")
     setShow(true)
 
   }
+  function OpneInputBox(value, indx) {
+    console.log("Input value", value)
+    console.log("Input value", indx)
+
+    setChieldInput(value)
+    setIndex(indx)
+    setShow(false)
+    setInput("")
+
+
+  }
   return (
     <>
-
       <input type="text" name="listname" value={input} onChange={handleChanges}></input>
-
-      {show ? (<button className="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
-        aria-expanded="false" aria-controls="collapseExample" style={{ margin: "10px" }} onClick={addItem}>Add Item</button>) :
-        (<button className="btn btn-warning" data-bs-toggle="collapse" href="#collapseExample" role="button"
-          aria-expanded="false" aria-controls="collapseExample" outline style={{ margin: "20px" }} onClick={Update} value={input}>Update</button>)
-      }
+      <button className="btn btn-success" style={{ margin: "10px" }} onClick={addItem}>Add Item</button>
       <br />
       <br />
       {
-        todo.map((item, index) => {
-          return (
-            <>
-              <table className="table" style={{ position: "initial", top: "40px", left: "20px", bordercollapse: "collapse", marginbottom: "20px", margintop: "20px" }}>
-
-                <tbody>
-                  <tr style={{ width: "10px", height: "10px" }}>
-                    <td style={{ width: "10px", padding: "5px", textAlign: "center", height: "10px" }} className="text-center">
-                      <span className="text-secondary mb-2" style={{ fontSize: '1rem', width: "10px" }}>{item}</span>
-                      <button className="btn btn-danger" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style={{ margin: "20px" }} onClick={() => filterList(index)}> Delete</button>
-
-                      <button className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
-                        aria-expanded="false" aria-controls="collapseExample" style={{ margin: "20px" }} onClick={() => EditList(index)}> Edit</button>
-                      <br />
-                    </td>
+        show ? (
+          todo.map((item, index) => {
+            return (
+              <>
+                <table>
+                  <tr>                  
+                      <span className="text-secondary mb-2" onClick={() => OpneInputBox(item, index)} value={item} style={{ fontSize: '1rem', width: "10px" }}>{item} </span>
+                      <button className="btn btn-danger" style={{ margin: "20px" }} onClick={() => filterList(index)}> Delete</button>
+                    
                   </tr>
-                </tbody>
-              </table>
-            </>
+                </table>
+              </>
+            )
+          })
+        )
+          :
+          (
+            <span>
+              <input type="text" name="listname" value={chieldInput} onChange={handleChieldChanges}></input>
+              <button className="btn btn-warning" outline style={{ margin: "20px" }} onClick={Update} value={chieldInput}>Update</button>
+            </span>
           )
-        })
       }
     </>
   )
