@@ -11,7 +11,7 @@ const ToDo = () => {
   function filterList(e) {
     var data = todo.filter((x, index) => index !== e)
     setToDo(data)
-    setShow(true)
+    setShow(false)
     setInput("")
     setChieldInput("")
     console.log("remove Input", input)
