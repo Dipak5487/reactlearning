@@ -8,12 +8,14 @@ import AboutPage from './Pages/AboutPage/AboutPages'
 import ArticleListPage from './Pages/ArticlePage/ArticleListPage'
 import ArticlePage from './Pages/ArticlePage/ArticlePage'
 import NavBar from './NavBar/NavBar';
+import NavbarTest from './NavBar/Navbartest'
 function App() {
 
   return (
     <>
     <BrowserRouter>
     <NavBar/>
+    <NavbarTest/>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/about" element={<AboutPage/>}/>
